@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+</head>
+
+<body>
+    <div>
+        <ng-container *ngIf="dieukien; then loggedIn; else loggedOut">
+        </ng-container>
+
+        <ng-template #loggedIn>
+            <div id="top-bar" *ngIf=true>
+                <div class="topnav socialmedia" id="myTopnav">
+                    <button (click)="home();" id="myTopnav">Home</button>
+                    <button (click)="singin();" id="myTopnav">Singin</button>
+                    <button (click)="singup();" id="myTopnav">Singup</button>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template #loggedOut>
+            <div id="top-bar" *ngIf=true>
+                <div class="topnav socialmedia" id="myTopnav">
+                    <button (click)="home();" id="myTopnav">Home</button>
+                    <button (click)="newarticle();" id="myTopnav">Newarticle</button>
+                    <button (click)="setting();" id="myTopnav">Setting</button>
+                    <button (click)="profile();" id="myTopnav">{{user}}</button>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</body>
