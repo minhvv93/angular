@@ -45,6 +45,7 @@ export class ApiService {
     } 
     var json = JSON.stringify(body);
     var params = 'json=' + json       
+    var b ;
     //return this.http.post<any>(this.url, params).map((response : Response) => response.json())
     let a =  this.http.post<any>(this.url, params).pipe(tap((response : Response) => response.json()))
     console.log(a);
