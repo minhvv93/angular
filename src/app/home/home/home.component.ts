@@ -14,9 +14,10 @@ export class HomeComponent implements OnInit {
   password = "jakejake";
 
   ngOnInit() {
-    this.service.geturl();
-    this.apisr.postuser();
+    //this.service.geturl();
+    //this.apisr.postuser();
     //this.apisr.login();
+    this.apisr.checkLogIn();
   }
 
 }
