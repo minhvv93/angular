@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import {AppComponent} from './app.component'
 import {HomeComponent} from './home/home/home.component'
 
 @NgModule({
@@ -10,6 +11,10 @@ import {HomeComponent} from './home/home/home.component'
       {
         path : '',
         component : HomeComponent
+      },
+      {
+        path : 'root',
+        component : AppComponent
       }
     ])
   ],

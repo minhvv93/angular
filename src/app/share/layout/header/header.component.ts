@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ApiService} from '../../services/api.service'
 import {Router} from '@angular/router'
 
 @Component({
@@ -7,11 +8,21 @@ import {Router} from '@angular/router'
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  dieukien = true;
 
-  constructor(private router : Router) { }
+
+  constructor(private router : Router , private apiservice : ApiService) { }
 
   ngOnInit() {
+    this.checklogin();
+  }
+  user = this.apiservice.getuser()
+  dieukien = true;
+  checklogin(){
+    if(this.user == null){
+      this.dieukien = true;
+    }else{
+      this.dieukien = false;
+    }
   }
   singin(){
 

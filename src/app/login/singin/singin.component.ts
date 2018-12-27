@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder }  from '@angular/forms';
 import { Router} from '@angular/router';
+import {ApiService} from '../../share/services/api.service'
+import { HttpClient , HttpHeaders ,HttpResponse} from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-singin',
@@ -10,7 +13,7 @@ import { Router} from '@angular/router';
 export class SinginComponent implements OnInit {
   form:FormGroup;
 
-  constructor(private formBuilder : FormBuilder , private router : Router) { }
+  constructor(private formBuilder : FormBuilder , private router : Router , private apiservice :ApiService ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -18,20 +21,28 @@ export class SinginComponent implements OnInit {
       password: ['',Validators.required]
     })
   }
-  login(){
+  username;
+  info;
+  async login(){
     const val = this.form.value;
     console.log(val.email);
-    
-    //this.service.setData(val.email)
+    this.apiservice.setuser(val.email,val.password)
 
-    //console.log(val.email);
-    //console.log(val.password);
-    if(val.email==="minhvv" && val.password==="1234"){
-      console.log('ban dang nhap thanh cong');
+    await this.apiservice.auPOST().subscribe(data => {this.info = data;
+      this.username = this.info.user.username;
+        if(val.email===this.info.user.email && val.password==="jakejake"){
+          console.log('ban dang nhap thanh cong');
+          this.apiservice.setuser1(this.username);
+          this.router.navigateByUrl("/root")
+        }else{
+          alert("user chua ton tai , dk ngay")
+        }
+        return this.username
+      },error => 
+      {alert("user chua ton tai or sai mat khau");
       this.router.navigateByUrl("")
-    }else{
-      alert("user chua ton tai , dk ngay")
-    }
+    })
+      
 
   }
   Singup(){

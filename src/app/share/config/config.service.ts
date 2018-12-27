@@ -8,8 +8,8 @@ import * as App from './config.const';
 export class ConfigService {
 
   constructor() { }
-  geturl(){ 
-   return App.Config.api; 
+  urlpostau(){ 
+   return App.Config.apisr+App.Config.aupost; 
   }
   getapiuser(){
     

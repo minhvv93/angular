@@ -1,6 +1,6 @@
 export const Config = {
-    api: "http://68.183.183.83",
-    post1 : "/api/users/login",
+    apisr: "http://68.183.183.83",
+    aupost : "/api/users/login",
     post2 : "/api/users",
     get : "/api/user",
     put : "/api/user",
