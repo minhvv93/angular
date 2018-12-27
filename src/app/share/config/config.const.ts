@@ -1,6 +1,5 @@
 export const Config = {
-    url: "http://68.183.183.83",
-    api: "/ur",
+    api: "http://68.183.183.83",
     post1 : "/api/users/login",
     post2 : "/api/users",
     get : "/api/user",

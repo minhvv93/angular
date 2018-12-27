@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ConfigService} from '../../share/config/config.service'
+import {ApiService} from '../../share/services/api.service'
 
 @Component({
   selector: 'app-home',
@@ -8,10 +9,14 @@ import {ConfigService} from '../../share/config/config.service'
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private service: ConfigService) { }
+  constructor(private service: ConfigService , private apisr : ApiService) { }
+  email = "jake@jake.jake";
+  password = "jakejake";
 
   ngOnInit() {
     this.service.geturl();
+    this.apisr.postuser();
+    //this.apisr.login();
   }
 
 }

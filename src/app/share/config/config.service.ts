@@ -9,9 +9,7 @@ export class ConfigService {
 
   constructor() { }
   geturl(){ 
-   console.log(App.Config.url);
-   console.log(App.Config.api);
-   
+   return App.Config.api; 
   }
   getapiuser(){
     

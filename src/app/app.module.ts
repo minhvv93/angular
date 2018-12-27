@@ -7,6 +7,7 @@ import { HomeModule } from './home/home.module';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './login/login.module';
 import {ConfigService} from './share/config/config.service'
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {ConfigService} from './share/config/config.service'
     HomeModule,
     AppRoutingModule,
     LoginModule,
+    HttpClientModule
 
   ],
   providers: [ConfigService],
