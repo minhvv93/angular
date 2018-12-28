@@ -8,14 +8,18 @@ import {HomeComponent} from './home/home/home.component'
   imports: [
     RouterModule,
     RouterModule.forRoot([
+      // {
+      //   path : '',
+      //   redirectTo : 'HomeComponent' , pathMatch : 'full'
+      // },
       {
         path : '',
         component : HomeComponent
       },
-      {
-        path : 'root',
-        component : AppComponent
-      }
+      // {
+      //   path : 'root',
+      //   component : AppComponent
+      // }
     ])
   ],
   exports : [RouterModule]

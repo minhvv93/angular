@@ -18,6 +18,12 @@ export class HomeComponent implements OnInit {
     //this.apisr.postuser();
     //this.apisr.login();
     //this.apisr.checkLogIn();
+    //this.apisr.GET();
+    //this.apisr.PUT();
+    this.apisr.Getprofile();
+    //console.log(localStorage.getItem('token'));
+    
+    
   }
 
 }

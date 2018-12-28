@@ -23,6 +23,7 @@ export class SinginComponent implements OnInit {
   }
   username;
   info;
+  token;
   async login(){
     const val = this.form.value;
     console.log(val.email);
@@ -30,10 +31,15 @@ export class SinginComponent implements OnInit {
 
     await this.apiservice.auPOST().subscribe(data => {this.info = data;
       this.username = this.info.user.username;
+      this.token = this.info.user.token;
+      //console.log(this.token);
+      localStorage.setItem('token', this.token);
+      
         if(val.email===this.info.user.email && val.password==="jakejake"){
+          //this.apiservice.GET();
           console.log('ban dang nhap thanh cong');
           this.apiservice.setuser1(this.username);
-          this.router.navigateByUrl("/root")
+          this.router.navigateByUrl("")
         }else{
           alert("user chua ton tai , dk ngay")
         }
