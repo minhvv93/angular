@@ -10,8 +10,8 @@ import {ApiService} from '../../share/services/api.service'
 export class HomeComponent implements OnInit {
 
   constructor(private service: ConfigService , private apisr : ApiService) { }
-  email = "jake@jake.jake";
-  password = "jakejake";
+  //email = "jake@jake.jake";
+  //password = "jakejake";
 
   ngOnInit() {
     //this.service.geturl();
@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     //this.apisr.checkLogIn();
     //this.apisr.GET();
     //this.apisr.PUT();
-    this.apisr.Getprofile();
+    //this.apisr.Getprofile();
     //console.log(localStorage.getItem('token'));
     
     

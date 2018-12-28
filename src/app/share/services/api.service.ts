@@ -1,10 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable ,Output,EventEmitter} from '@angular/core';
 import { ConfigService } from '../config/config.service'
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-import { setDefaultService } from 'selenium-webdriver/chrome';
+
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,12 +11,19 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ApiService {
+  @Output() dataService = new EventEmitter();
   info;
 
   constructor(private service: ConfigService, private http: HttpClient) { }
   private email;
   private password;
   private username;
+  changeData(dataChild){
+    this.username = dataChild;
+    //console.log(this.email);
+  
+    this.dataService.emit(this.username);
+  }
   
   setuser(email, password) {
     this.email = email;
@@ -70,20 +74,7 @@ export class ApiService {
     return this.http.delete(sr,httpOptions)
 
  }
-//  GET() {
-//     let sr = this.service.urlpostau()
-//     var params = {
-//       "user": {
-//         "email": this.email,
-//         "password": this.password
-//       }
-//     }
-//     return await this.http.get("http://68.183.183.83/api/user" ,httpOptions).subscribe(data => {this.info = data;
-//       console.log(this.info);
-      
-//     })
 
-//   }
 GET(){
   this.http.get('http://68.183.183.83/api/user', {
     headers: {
@@ -117,12 +108,7 @@ GET(){
 
   }
   Getprofile(){
-    return this.http.get('http://68.183.183.83/api/profiles/jacob',{
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + localStorage.getItem('token')
-      }
-    }).subscribe(data => {this.info = data;
+    return this.http.get('http://68.183.183.83/api/profiles/'+ localStorage.getItem('user')).subscribe(data => {this.info = data;
       console.log(this.info);
       
     })
