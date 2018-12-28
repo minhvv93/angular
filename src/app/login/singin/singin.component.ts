@@ -35,14 +35,14 @@ export class SinginComponent implements OnInit {
       //console.log(this.token);
       localStorage.setItem('token', this.token);
       
-        if(val.email===this.info.user.email && val.password==="jakejake"){
+        //if(val.email===this.info.user.email && val.password==="jakejake"){
           //this.apiservice.GET();
           console.log('ban dang nhap thanh cong');
           this.apiservice.setuser1(this.username);
           this.router.navigateByUrl("")
-        }else{
-          alert("user chua ton tai , dk ngay")
-        }
+        // }else{
+        //   alert("user chua ton tai , dk ngay")
+        // }
         return this.username
       },error => 
       {alert("user chua ton tai or sai mat khau");
