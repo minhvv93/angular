@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ConfigService} from '../../share/config/config.service'
-import {ApiService} from '../../share/services/api.service'
+import {ConfigService} from '../../share/config/config.service';
+import {ApiService} from '../../share/services/api.service';
+import {LoadingService} from '../../share/services/loading.service';
+
 
 @Component({
   selector: 'app-home',
@@ -9,7 +11,7 @@ import {ApiService} from '../../share/services/api.service'
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private service: ConfigService , private apisr : ApiService) { }
+  constructor(private service: ConfigService , private apisr : ApiService , private loadig:LoadingService) { }
   //email = "jake@jake.jake";
   //password = "jakejake";
 
@@ -24,6 +26,16 @@ export class HomeComponent implements OnInit {
     //console.log(localStorage.getItem('token'));
     
     
+    
+  }
+  dieukien = false;
+  Loading(){
+   return this.dieukien = this.loadig.showloading();
+    //return this.dieukien;
+    //alert('ok')
+  }
+  Stop(){
+    return this.dieukien = this.loadig.hideloading();
   }
 
 }

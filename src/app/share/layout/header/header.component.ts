@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.checklogin();
-    localStorage.removeItem('user')
+    //localStorage.removeItem('user')
 
   }
   async checklogin() {
