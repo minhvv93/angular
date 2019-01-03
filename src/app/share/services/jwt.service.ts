@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output,EventEmitter } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JwtService {
+  @Output() dataService = new EventEmitter();
 
   constructor() { }
   public setuser(user){
@@ -12,10 +13,10 @@ export class JwtService {
   public settoken(token){
     localStorage.setItem('token',token);
   }
-  public getuser(){
-    localStorage.getItem('user');
-  }
-  public gettoken(){
-    localStorage.getItem('token');
+  username;
+    changeData(dataChild){
+    this.username = dataChild
+    //console.log(this.username);
+    this.dataService.emit(this.username);
   }
 }

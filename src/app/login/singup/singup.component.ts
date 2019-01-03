@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {ApiService} from '../../share/services/api.service';
+import {UserService} from '../../share/services/user.service';
 
 @Component({
   selector: 'app-singup',
@@ -10,7 +11,7 @@ import {ApiService} from '../../share/services/api.service';
 export class SingupComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder , private api : ApiService) { }
+  constructor(private formBuilder: FormBuilder , private User : UserService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -21,7 +22,7 @@ export class SingupComponent implements OnInit {
   }
 public async register(){
     const val = this.form.value;
-    console.log(val.username,val.email,val.password);
+    //console.log(val.username,val.email,val.password);
     let params : object = {
       "user":{
         username: val.username,
@@ -30,7 +31,7 @@ public async register(){
       }
     };
     try {
-      let response : object = await this.api.POST("/api/users", params)
+      let response : object = this.User.register(params)
       alert("register successful")
       
     } catch (error) {

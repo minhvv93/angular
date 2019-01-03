@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service'
 import { Router } from '@angular/router'
-import {UserService} from '../../services/user.service'
+import { UserService } from '../../services/user.service'
+import { JwtService } from '../../services/jwt.service'
 
 @Component({
   selector: 'app-header',
@@ -9,28 +10,35 @@ import {UserService} from '../../services/user.service'
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  //@Output() dataService = new EventEmitter();
+  data;
 
+  constructor(private router: Router, private jwt: JwtService, private User: UserService) {
 
-  constructor(private router: Router, private apiservice: ApiService , private User: UserService) { }
+  }
 
   dieukien = true;
   user = localStorage.getItem('user');
+  //user;
 
   ngOnInit() {
     this.checklogin();
-    localStorage.removeItem('user')
-
   }
-  async checklogin() {
-    this.User.dataService.subscribe(username => {
+  public checklogin() {
+    //console.log(this.user);
+    if (this.user !== null) {
+      this.dieukien = false;
+    }
+    this.jwt.dataService.subscribe(username => {
       this.user = username;
+      //this.user = localStorage.getItem('user');
       if (this.user == null) {
         this.dieukien = true;
       } else {
         this.dieukien = false;
       }
-
     })
+
   }
 
   singin() {
@@ -50,7 +58,16 @@ export class HeaderComponent implements OnInit {
     alert("seting")
   }
   profile() {
-    alert("profile")
+    this.User.getuser()
+      .subscribe(respone => {
+        this.data = respone;
+        console.log(this.data);
+
+      });
+  }
+  logout() {
+    localStorage.removeItem('user');
+    window.location.reload();
   }
 
 }

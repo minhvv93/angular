@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoadingService } from '../../share/services/loading.service'
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import {UserService} from '../../share/services/user.service';
-import {JwtService} from '../../share/services/jwt.service'
+import { LoadingService } from '../../share/services/loading.service';
+import { UserService } from '../../share/services/user.service';
+import { JwtService } from '../../share/services/jwt.service';
 
 @Component({
   selector: 'app-singin',
@@ -15,8 +13,8 @@ import {JwtService} from '../../share/services/jwt.service'
 export class SinginComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private apiuser : UserService, private loading: LoadingService, private jwt : JwtService
-    ) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private apiuser: UserService, private loading: LoadingService, private jwt: JwtService
+  ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -30,7 +28,6 @@ export class SinginComponent implements OnInit {
   dieukien = false;
   public async singin() {
     const val = this.form.value;
-    //console.log(val.email);
     let params: object = {
       "user": {
         email: val.email,
@@ -38,7 +35,7 @@ export class SinginComponent implements OnInit {
       }
     };
     try {
-      let responce :object = this.apiuser.login(params)
+      let responce: object = this.apiuser.login(params)
     } catch (error) {
       await timeout(5000);
       this.router.navigateByUrl("");
