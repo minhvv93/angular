@@ -9,28 +9,29 @@
 </head>
 
 <body>
-    <div>
-        <ng-container *ngIf="dieukien; then loggedIn; else loggedOut">
+    <!-- <div> -->
+        <!-- <ng-container *ngIf="dieukien; then loggedIn; else loggedOut">
         </ng-container>
 
-        <ng-template #loggedIn>
-            <div id="top-bar" *ngIf=true>
+        <ng-template #loggedIn> -->
+            <div id="top-bar" *ngIf="dieukien">
                 <div class="topnav socialmedia" id="myTopnav">
                     <button (click)="home();" id="myTopnav">Home</button>
                     <button (click)="singin();" id="myTopnav">Singin</button>
                     <button (click)="singup();" id="myTopnav">Singup</button>
                 </div>
             </div>
-        </ng-template>
-        <ng-template #loggedOut>
-            <div id="top-bar" *ngIf=true>
+        <!-- </ng-template> -->
+        <!-- <ng-template #loggedOut> -->
+            <div id="top-bar" *ngIf="!dieukien">
                 <div class="topnav socialmedia" id="myTopnav">
                     <button (click)="home();" id="myTopnav">Home</button>
                     <button (click)="newarticle();" id="myTopnav">Newarticle</button>
                     <button (click)="setting();" id="myTopnav">Setting</button>
                     <button (click)="profile();" id="myTopnav">{{user}}</button>
+                    <button (click)="logout();" id="myTopnav">Logout</button>
                 </div>
             </div>
-        </ng-template>
-    </div>
+        <!-- </ng-template> -->
+    <!-- </div> -->
 </body>

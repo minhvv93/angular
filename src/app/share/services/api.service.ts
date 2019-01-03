@@ -1,55 +1,54 @@
-import { Injectable } from '@angular/core';
-import {ConfigService} from '../config/config.service'
-import { HttpClient , HttpHeaders ,HttpResponse} from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Injectable, Output, EventEmitter } from '@angular/core';
+import { ConfigService } from '../config/config.service'
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { JwtService } from '../services/jwt.service'
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  //email = "jake@jake.jake";
-  //password = "jakejake"
-  private url = 'http://68.183.183.83/api/users/login'
-
-  constructor(private service: ConfigService , private http : HttpClient) { }
-   async postuser(){
-    var body = {
-      "user":{
-        "email": "jake@jake.jake",
-        "password": "jakejake"
+  data;
+ // @Output() dataService = new EventEmitter();
+  httpOptions: object;
+  public gethttpoptions() {
+    if (localStorage.getItem('token') == null) {
+      return this.httpOptions = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      }
+    } else {
+      return this.httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        })
       }
     }
-    let api = this.service.geturl()
-    console.log(api);
-    let a = await this.http.post<any>(`http://68.183.183.83/api/users/login`,body);
-    console.log(a);
   }
-  // addMovie(newMovie: Movie): Observable<Movie> {        
-  //   return this.http.post<Movie>(this.moviesURL, newMovie, httpOptions).pipe(
-  //     tap((movie: Movie) => console.log(`inserted movie = ${JSON.stringify(movie)}`)),
-  //     catchError(error => of(new Movie()))
-  //   );
-  // }
-  login(): Observable<any> {
-    var body = {
-      "user":{
-        "email": "jake@jake.jake",
-        "password": "jakejake"
-      }
-    } 
-    var json = JSON.stringify(body);
-    var params = 'json=' + json       
-    //return this.http.post<any>(this.url, params).map((response : Response) => response.json())
-    let a =  this.http.post<any>(this.url, params).pipe(tap((response : Response) => response.json()))
-    console.log(a);
-    return a;
-    
-    
+
+
+  constructor(private config: ConfigService, private http: HttpClient, private jwt: JwtService) { }
+
+
+  public POST(path: string, params: object) {
+    let URL = this.config.getURL() + path;
+    //console.log(this.httpOptions);
+
+    return this.http.post(URL, params, this.gethttpoptions()).toPromise();
   }
+  public GET(path: string) {
+    let URL = this.config.getURL() + path;
+    return this.http.get(URL, this.gethttpoptions())
+  }
+  public PUT(path: string, params: object) {
+    let URL = this.config.getURL() + path;
+    return this.http.put(URL, params, this.gethttpoptions()).toPromise();
+  }
+  public DELETE(path: string) {
+    let URL = this.config.getURL() + path;
+    return this.http.delete(URL, this.gethttpoptions()).toPromise();
+
+  }
+
 }

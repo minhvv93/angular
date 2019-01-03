@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ConfigService} from '../../share/config/config.service'
-import {ApiService} from '../../share/services/api.service'
+import {ConfigService} from '../../share/config/config.service';
+import {ApiService} from '../../share/services/api.service';
+import {LoadingService} from '../../share/services/loading.service';
+
 
 @Component({
   selector: 'app-home',
@@ -9,14 +11,35 @@ import {ApiService} from '../../share/services/api.service'
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private service: ConfigService , private apisr : ApiService) { }
-  email = "jake@jake.jake";
-  password = "jakejake";
+  constructor(private service: ConfigService , private apisr : ApiService , private loadig:LoadingService) { }
+  //email = "jake@jake.jake";
+  //password = "jakejake";
 
   ngOnInit() {
-    this.service.geturl();
-    this.apisr.postuser();
+    //this.service.geturl();
+    //this.apisr.postuser();
     //this.apisr.login();
+    //this.apisr.checkLogIn();
+    //this.apisr.GET();
+    //this.apisr.PUT();
+    //this.apisr.Getprofile();
+    //console.log(localStorage.getItem('token'));
+    
+    
+    
+  }
+  // dieukien = false;
+  public async Loading(){
+    
+    this.loadig.showLoadingAllScreen();
+    //await this.timeout(3000);
+    //this.loadig.hideLoadingAllScreen();
+  }
+  Stop(){
+    this.loadig.hideLoadingAllScreen();
+  }
+   timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
 }

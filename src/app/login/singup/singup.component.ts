@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {ApiService} from '../../share/services/api.service';
+import {UserService} from '../../share/services/user.service';
 
 @Component({
   selector: 'app-singup',
@@ -7,17 +9,36 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./singup.component.css']
 })
 export class SingupComponent implements OnInit {
-  registerForm: FormGroup;
+  form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder , private User : UserService) { }
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+    this.form = this.formBuilder.group({
+      username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
   });
+  }
+public async register(){
+    const val = this.form.value;
+    //console.log(val.username,val.email,val.password);
+    let params : object = {
+      "user":{
+        username: val.username,
+        email: val.email,
+        password: val.password
+      }
+    };
+    try {
+      let response : object = this.User.register(params)
+      alert("register successful")
+      
+    } catch (error) {
+      console.log("singup error " , error);
+      
+    }
+    
   }
 
 }

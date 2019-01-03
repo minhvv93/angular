@@ -1,3 +1,4 @@
+<mat-spinner *ngIf = "dieukien"></mat-spinner>
 <form [formGroup]="form">
   <fieldset>
     <legend>Login</legend>
@@ -11,7 +12,7 @@
     </div>
   </fieldset>
   <div class="form-buttons">
-    <button class="button button-primary" (click)="login()">Login</button>
+    <button class="button button-primary" (click)="singin()">Login</button>
     <button class="button" (click)="Singup();">Singup</button>
   </div>
 </form>

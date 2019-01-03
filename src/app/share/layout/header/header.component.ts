@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router'
+import { ApiService } from '../../services/api.service'
+import { Router } from '@angular/router'
+import { UserService } from '../../services/user.service'
+import { JwtService } from '../../services/jwt.service'
 
 @Component({
   selector: 'app-header',
@@ -7,33 +10,64 @@ import {Router} from '@angular/router'
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  dieukien = true;
+  //@Output() dataService = new EventEmitter();
+  data;
 
-  constructor(private router : Router) { }
+  constructor(private router: Router, private jwt: JwtService, private User: UserService) {
+
+  }
+
+  dieukien = true;
+  user = localStorage.getItem('user');
+  //user;
 
   ngOnInit() {
+    this.checklogin();
   }
-  singin(){
+  public checklogin() {
+    //console.log(this.user);
+    if (this.user !== null) {
+      this.dieukien = false;
+    }
+    this.jwt.dataService.subscribe(username => {
+      this.user = username;
+      //this.user = localStorage.getItem('user');
+      if (this.user == null) {
+        this.dieukien = true;
+      } else {
+        this.dieukien = false;
+      }
+    })
 
+  }
+
+  singin() {
     this.router.navigate(['/singin']);
-  
-  
-    }
-    singup(){
+  }
+  singup() {
     this.router.navigate(["/singup"])
-  
-    }
-    home(){
+
+  }
+  home() {
     this.router.navigateByUrl('')
-    }
-    newarticle(){
-      this.router.navigate(["/newarticle"]);
-    }
-    setting(){
-      alert("seting")
-    }
-    profile(){
-      alert("profile")
-    }
+  }
+  newarticle() {
+    this.router.navigate(["/newarticle"]);
+  }
+  setting() {
+    alert("seting")
+  }
+  profile() {
+    this.User.getuser()
+      .subscribe(respone => {
+        this.data = respone;
+        console.log(this.data);
+
+      });
+  }
+  logout() {
+    localStorage.removeItem('user');
+    window.location.reload();
+  }
 
 }
