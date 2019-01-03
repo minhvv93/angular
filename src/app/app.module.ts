@@ -9,6 +9,8 @@ import { LoginModule } from './login/login.module';
 import {ConfigService} from './share/config/config.service'
 import { HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {UserService} from './share/services/user.service';
+import {JwtService} from './share/services/jwt.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatProgressSpinnerModule
 
   ],
-  providers: [ConfigService],
+  providers: [ConfigService,UserService,JwtService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

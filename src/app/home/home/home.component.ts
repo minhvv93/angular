@@ -28,14 +28,18 @@ export class HomeComponent implements OnInit {
     
     
   }
-  dieukien = false;
-  Loading(){
-   return this.dieukien = this.loadig.showloading();
-    //return this.dieukien;
-    //alert('ok')
+  // dieukien = false;
+  public async Loading(){
+    
+    this.loadig.showLoadingAllScreen();
+    //await this.timeout(3000);
+    //this.loadig.hideLoadingAllScreen();
   }
   Stop(){
-    return this.dieukien = this.loadig.hideloading();
+    this.loadig.hideLoadingAllScreen();
+  }
+   timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
 }

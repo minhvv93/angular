@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service'
 import { Router } from '@angular/router'
+import {UserService} from '../../services/user.service'
 
 @Component({
   selector: 'app-header',
@@ -10,20 +11,19 @@ import { Router } from '@angular/router'
 export class HeaderComponent implements OnInit {
 
 
-  constructor(private router: Router, private apiservice: ApiService) { }
+  constructor(private router: Router, private apiservice: ApiService , private User: UserService) { }
 
   dieukien = true;
   user = localStorage.getItem('user');
 
   ngOnInit() {
     this.checklogin();
-    //localStorage.removeItem('user')
+    localStorage.removeItem('user')
 
   }
   async checklogin() {
-    this.apiservice.dataService.subscribe(username => {
+    this.User.dataService.subscribe(username => {
       this.user = username;
-      //console.log(this.user);
       if (this.user == null) {
         this.dieukien = true;
       } else {
