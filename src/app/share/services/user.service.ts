@@ -2,11 +2,14 @@ import { Injectable } from '@angular/core';
 import { ApiService } from '../services/api.service'
 import { JwtService } from '../../share/services/jwt.service'
 import { Router } from '@angular/router';
+import { Observable ,  BehaviorSubject ,  ReplaySubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
+  public isAuthenticated = this.isAuthenticatedSubject.asObservable();
   info;
   profile;
   constructor(private api: ApiService, private jwt: JwtService, private router: Router) { }

@@ -17,29 +17,30 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  dieukien = true;
-  user = localStorage.getItem('user');
+  //dieukien = true;
+  user = this.jwt.getuser();
   //user;
 
   ngOnInit() {
-    this.checklogin();
+    //this.checklogin();
+    //this.user = localStorage.getItem('user');
+    this.jwt.dataService.subscribe(username=>this.user = username)
   }
-  public checklogin() {
-    //console.log(this.user);
-    if (this.user !== null) {
-      this.dieukien = false;
-    }
-    this.jwt.dataService.subscribe(username => {
-      this.user = username;
-      //this.user = localStorage.getItem('user');
-      if (this.user == null) {
-        this.dieukien = true;
-      } else {
-        this.dieukien = false;
-      }
-    })
+  // public checklogin() {
+  //   //console.log(this.user);
+  //   if (this.user !== null) {
+  //     this.dieukien = false;
+  //   }
+  //   this.jwt.dataService.subscribe(username => {
+  //     this.user = username;
+  //     if (this.user == null) {
+  //       this.dieukien = true;
+  //     } else {
+  //       this.dieukien = false;
+  //     }
+  //   })
 
-  }
+  // }
 
   singin() {
     this.router.navigate(['/singin']);
@@ -67,6 +68,7 @@ export class HeaderComponent implements OnInit {
   }
   logout() {
     localStorage.removeItem('user');
+    localStorage.removeItem('token')
     window.location.reload();
   }
 

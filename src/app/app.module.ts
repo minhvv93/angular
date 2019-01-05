@@ -11,10 +11,12 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {UserService} from './share/services/user.service';
 import {JwtService} from './share/services/jwt.service';
+//import { IsloginedDirective } from './share/directive/islogined.directive';
+//import { NotloginDirective } from './share/directive/notlogin.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

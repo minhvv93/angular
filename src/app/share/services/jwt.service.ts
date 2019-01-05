@@ -13,6 +13,12 @@ export class JwtService {
   public settoken(token){
     localStorage.setItem('token',token);
   }
+  public gettoken(){
+    return localStorage.getItem('token')
+  }
+  public getuser(){
+    return localStorage.getItem('user')
+  }
   username;
     changeData(dataChild){
     this.username = dataChild
