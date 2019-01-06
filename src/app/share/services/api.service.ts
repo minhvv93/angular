@@ -39,7 +39,7 @@ export class ApiService {
   }
   public GET(path: string) {
     let URL = this.config.getURL() + path;
-    return this.http.get(URL, this.gethttpoptions())
+    return this.http.get(URL, this.gethttpoptions()).toPromise();
   }
   public PUT(path: string, params: object) {
     let URL = this.config.getURL() + path;

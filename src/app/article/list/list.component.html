@@ -1,0 +1,22 @@
+<mat-tab-group>
+  <mat-tab label="Your Feed" *ngIf=fale>{{author}}</mat-tab>
+  <mat-tab label="Global Feed">
+    <a *ngFor="let list of lists" [routerLink]="['/article' , list.slug]" >
+        <h1>{{ list.title }}</h1>
+        <p>{{ list.description }}</p>
+        <span >Read more...</span>
+    </a>
+  </mat-tab>
+</mat-tab-group>
+
+<!-- <a [routerLink]="['/article', article.slug]" class="preview-link">
+  <h1>{{ article.title }}</h1>
+  <p>{{ article.description }}</p>
+  <span>Read more...</span>
+  <ul class="tag-list">
+    <li class="tag-default tag-pill tag-outline"
+      *ngFor="let tag of article.tagList">
+      {{ tag }}
+    </li>
+  </ul>
+</a> -->

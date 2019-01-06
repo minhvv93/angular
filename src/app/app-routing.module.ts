@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import {AppComponent} from './app.component'
-import {HomeComponent} from './home/home/home.component'
+import {ListComponent} from './article/list/list.component';
 import {HeaderComponent} from './share/layout/header/header.component'
+import {NewarticleComponent} from './article/newarticle/newarticle.component';
 
 @NgModule({
   declarations: [],
@@ -10,9 +11,13 @@ import {HeaderComponent} from './share/layout/header/header.component'
     RouterModule,
     RouterModule.forRoot([
       {
-        path : '',
-        component : HomeComponent
+        path: '',
+        component: ListComponent
       },
+      {
+        path : 'newarticle',
+        component : NewarticleComponent
+      }
     ])
   ],
   exports : [RouterModule]

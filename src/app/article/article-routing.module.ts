@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {HomeComponent} from './home/home.component'
 import { RouterModule } from '@angular/router';
+import {DetailComponent} from './detail/detail.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [DetailComponent],
   imports: [
     CommonModule,
     RouterModule,
     RouterModule.forRoot([
       {
-        path: 'home',
-        component: HomeComponent
-      },
+        path: 'article/:id',
+        component: DetailComponent
+      }
     ])
   ],
   exports : [RouterModule]
 })
-export class HomeRoutingModule { }
+export class ArticleRoutingModule { }

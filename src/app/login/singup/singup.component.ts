@@ -31,7 +31,8 @@ public async register(){
       }
     };
     try {
-      let response : object = this.User.register(params)
+      //let response : object = this.User.register(params)
+      await this.User.register(params)
       alert("register successful")
       
     } catch (error) {

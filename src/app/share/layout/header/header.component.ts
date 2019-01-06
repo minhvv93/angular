@@ -10,37 +10,17 @@ import { JwtService } from '../../services/jwt.service'
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  //@Output() dataService = new EventEmitter();
   data;
 
   constructor(private router: Router, private jwt: JwtService, private User: UserService) {
 
   }
 
-  //dieukien = true;
   user = this.jwt.getuser();
-  //user;
 
   ngOnInit() {
-    //this.checklogin();
-    //this.user = localStorage.getItem('user');
     this.jwt.dataService.subscribe(username=>this.user = username)
   }
-  // public checklogin() {
-  //   //console.log(this.user);
-  //   if (this.user !== null) {
-  //     this.dieukien = false;
-  //   }
-  //   this.jwt.dataService.subscribe(username => {
-  //     this.user = username;
-  //     if (this.user == null) {
-  //       this.dieukien = true;
-  //     } else {
-  //       this.dieukien = false;
-  //     }
-  //   })
-
-  // }
 
   singin() {
     this.router.navigate(['/singin']);
@@ -53,18 +33,16 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('')
   }
   newarticle() {
+    alert("ok")
     this.router.navigate(["/newarticle"]);
   }
   setting() {
     alert("seting")
   }
-  profile() {
-    this.User.getuser()
-      .subscribe(respone => {
-        this.data = respone;
-        console.log(this.data);
-
-      });
+ public async profile() {
+    this.data = await this.User.getuser()
+    console.log(this.data);
+    
   }
   logout() {
     localStorage.removeItem('user');

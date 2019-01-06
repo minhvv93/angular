@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ShareModule } from './share/share.module';
-import { HomeModule } from './home/home.module';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './login/login.module';
 import {ConfigService} from './share/config/config.service'
@@ -11,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {UserService} from './share/services/user.service';
 import {JwtService} from './share/services/jwt.service';
+import { ArticleModule } from './article/article.module';
 //import { IsloginedDirective } from './share/directive/islogined.directive';
 //import { NotloginDirective } from './share/directive/notlogin.directive';
 
@@ -21,11 +21,11 @@ import {JwtService} from './share/services/jwt.service';
   imports: [
     BrowserModule,
     ShareModule,
-    HomeModule,
     AppRoutingModule,
     LoginModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ArticleModule
 
   ],
   providers: [ConfigService,UserService,JwtService],
