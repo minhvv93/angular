@@ -3,7 +3,7 @@ import {ConfigService} from '../../share/config/config.service';
 import {ApiService} from '../../share/services/api.service';
 import {JwtService} from '../../share/services/jwt.service';
 import {ArticleService} from '../../share/services/article.service';
-import {Article} from '../article'
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class ListComponent implements OnInit {
  
 
   constructor(private service: ConfigService , private apisr : ApiService ,private article : ArticleService,
-     private jwt : JwtService){
+     private jwt : JwtService , private route : ActivatedRoute){
       }
 
   ngOnInit() {

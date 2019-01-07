@@ -23,8 +23,6 @@ export class SinginComponent implements OnInit {
     })
   }
   username;
-  info;
-  token;
   dieukien = false;
   public async singin() {
     const val = this.form.value;

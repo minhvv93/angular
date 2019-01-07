@@ -31,7 +31,7 @@ export class ApiService {
   constructor(private config: ConfigService, private http: HttpClient, private jwt: JwtService) { }
 
 
-  public POST(path: string, params: object) {
+  public POST(path: string, params?: object) {
     let URL = this.config.getURL() + path;
     //console.log(this.httpOptions);
 

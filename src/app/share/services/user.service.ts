@@ -28,4 +28,7 @@ export class UserService {
   public getuser() {
   return this.api.GET("/api/user")
   }
+  public async updateuser(params){
+    return this.api.PUT("/api/user",params)
+  }
 }

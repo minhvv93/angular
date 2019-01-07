@@ -11,8 +11,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {UserService} from './share/services/user.service';
 import {JwtService} from './share/services/jwt.service';
 import { ArticleModule } from './article/article.module';
-//import { IsloginedDirective } from './share/directive/islogined.directive';
-//import { NotloginDirective } from './share/directive/notlogin.directive';
+import {ProfileModule} from './profile/profile.module'
+
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { ArticleModule } from './article/article.module';
     LoginModule,
     HttpClientModule,
     MatProgressSpinnerModule,
-    ArticleModule
+    ArticleModule,
+    ProfileModule
 
   ],
   providers: [ConfigService,UserService,JwtService],

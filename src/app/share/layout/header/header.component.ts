@@ -33,15 +33,15 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('')
   }
   newarticle() {
-    alert("ok")
     this.router.navigate(["/newarticle"]);
   }
   setting() {
-    alert("seting")
+    this.router.navigateByUrl('seting')
   }
  public async profile() {
-    this.data = await this.User.getuser()
-    console.log(this.data);
+   this.router.navigateByUrl('profile')
+    //this.data = await this.User.getuser()
+    //console.log(this.data);
     
   }
   logout() {
