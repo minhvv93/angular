@@ -72,13 +72,13 @@ export class ArticleService {
   }
   public favorite(slug){
     let url = "/api/articles/" + slug + "/favorite"
-    console.log(url);
-    this.apisr.POST(url)
+    //console.log(url);
+    return this.apisr.POST(url)
   }
   public unfavorite(slug){
     let url = "/api/articles/" + slug + "/favorite"
     console.log(url);
-    this.apisr.DELETE(url)
+    return this.apisr.DELETE(url)
   }
   public updatearticle(slug, params){
     let url = "/api/articles/" + slug

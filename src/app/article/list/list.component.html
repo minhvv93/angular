@@ -1,10 +1,11 @@
 <mat-tab-group>
   <mat-tab label="Your Feed" *ngIf=check>{{author}}</mat-tab>
   <mat-tab label="Global Feed">
-    <a *ngFor="let list of lists" [routerLink]="['/article' , list.slug]">
-        <h1 >{{ list.title }}</h1>
-        <p>{{ list.description }}</p>
-        <span  >Read more...</span>
+    <a *ngFor="let item of lists" >
+        <h1 >{{ item.title }}</h1>
+        <p>{{ item.description }}</p>
+        <span  [routerLink]="['/article' , item.slug]" >Read more...</span>
+        <button (click)=favoritearticle(item); [ngStyle]="{'color':item.favorited ? 'red' : 'black' }">Favorite Article</button> <p [ngModel]>{{item.favoritesCount}}</p>
     </a>
   </mat-tab>
 </mat-tab-group>
