@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import {SinginComponent} from './singin/singin.component';
-import {SingupComponent} from './singup/singup.component'
+import { SinginComponent } from './singin/singin.component';
+import { SingupComponent } from './singup/singup.component';
 
 @NgModule({
   declarations: [],
@@ -20,6 +20,6 @@ import {SingupComponent} from './singup/singup.component'
       }
     ])
   ],
-  exports : [RouterModule]
+  exports: [RouterModule]
 })
 export class LogRoutingModule { }

@@ -13,42 +13,38 @@ import { JwtService } from '../../share/services/jwt.service';
 export class SinginComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private apiuser: UserService, private loading: LoadingService, private jwt: JwtService
+  constructor(private formBuilder: FormBuilder, private router: Router,
+    private apiuser: UserService, private loading: LoadingService, private jwt: JwtService
   ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
-    })
+    });
   }
-  username;
-  dieukien = false;
   public async singin() {
     const val = this.form.value;
-    let params: object = {
-      "user": {
+    const params: object = {
+      'user': {
         email: val.email,
         password: val.password
       }
     };
     try {
-      let responce: object = this.apiuser.login(params)
+      const responce: object = this.apiuser.login(params);
     } catch (error) {
       await timeout(5000);
-      this.router.navigateByUrl("");
-      alert("user sai email or password")
+      this.router.navigateByUrl('');
+      alert('user sai email or password');
     }
 
     function timeout(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
-
-
-
   }
   Singup() {
-    this.router.navigate(["/singup"])
+    this.router.navigate(['/singup']);
 
   }
 

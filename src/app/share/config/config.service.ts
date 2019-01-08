@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-//import {configvalue} from './configvalue';
+// import {configvalue} from './configvalue';
 import * as App from './config.const';
 
 @Injectable({
@@ -8,8 +8,8 @@ import * as App from './config.const';
 export class ConfigService {
 
   constructor() { }
-  
-  public getURL():string{ 
-   return App.Config.apisr;
+
+  public getURL(): string {
+    return App.Config.apisr;
   }
 }

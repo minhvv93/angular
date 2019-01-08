@@ -1,11 +1,11 @@
 export class Article {
     slug: string;
-    title: string = '';
-    description: string = '';
-    body: string = '';
+    title = '';
+    description = '';
+    body = '';
     createdAt: string;
     updatedAt: string;
     favorited: boolean;
     favoritesCount: number;
-    author : string;
+    author: string;
 }

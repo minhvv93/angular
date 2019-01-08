@@ -5,13 +5,13 @@ import { AppComponent } from './app.component';
 import { ShareModule } from './share/share.module';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './login/login.module';
-import {ConfigService} from './share/config/config.service'
+import {ConfigService} from './share/config/config.service';
 import { HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {UserService} from './share/services/user.service';
 import {JwtService} from './share/services/jwt.service';
 import { ArticleModule } from './article/article.module';
-import {ProfileModule} from './profile/profile.module'
+import {ProfileModule} from './profile/profile.module';
 
 
 @NgModule({
@@ -29,7 +29,7 @@ import {ProfileModule} from './profile/profile.module'
     ProfileModule
 
   ],
-  providers: [ConfigService,UserService,JwtService],
+  providers: [ConfigService, UserService, JwtService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

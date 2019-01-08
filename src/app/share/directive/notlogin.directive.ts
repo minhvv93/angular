@@ -1,11 +1,11 @@
-import { Directive, HostListener, Renderer, ElementRef } from '@angular/core';
-import { Router } from '@angular/router'
+import { Directive, HostListener, Renderer, ElementRef, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { JwtService } from '../services/jwt.service';
 
 @Directive({
   selector: '[appNotlogin]'
 })
-export class NotloginDirective {
+export class NotloginDirective implements OnInit {
   user = null;
   constructor(private router: Router, private jwt: JwtService, private renderer: Renderer, private el: ElementRef) {
   }
@@ -24,7 +24,7 @@ export class NotloginDirective {
         this.user = username;
         this.renderer.setElementStyle(this.el.nativeElement, 'display', 'none');
       }
-    )
+    );
   }
 
 

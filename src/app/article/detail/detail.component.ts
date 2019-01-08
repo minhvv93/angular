@@ -10,23 +10,25 @@ import { JwtService } from '../../share/services/jwt.service';
   styleUrls: ['./detail.component.css']
 })
 export class DetailComponent implements OnInit {
+  public slug: string;
+  public title = '';
+  public author = '';
+  public description = '';
+  public obj: any;
+  public favoriteCount: number;
+  public favorited: boolean;
+  public newCommand: string;
 
   constructor(private article: ArticleService, private route: ActivatedRoute, private jwt: JwtService, private router: Router) { }
   ngOnInit() {
     this.detailarticle();
   }
-  slug: string;
-  title: string = '';
-  author: string = '';
-  description: string = '';
-  obj: any;
-  favoriteCount: number = 0;
-  favorited: boolean;
+
   public async detailarticle() {
     this.route.params.subscribe((params) => {
       this.slug = params['id'];
-      //console.log(this.slug);
-    })
+      // console.log(this.slug);
+    });
     this.obj = await this.article.getarticle(this.slug);
     console.log(this.obj);
     this.title = this.obj.article.title;
@@ -38,19 +40,19 @@ export class DetailComponent implements OnInit {
   public async delete() {
     if (this.author === this.jwt.getuser()) {
       this.article.deletearticle(this.slug);
-      this.router.navigateByUrl('')
+      this.router.navigateByUrl('');
     } else {
       alert('ban khong co quyen');
-      this.router.navigateByUrl('')
+      this.router.navigateByUrl('');
     }
   }
   public async favoritearticle() {
-    //console.log(this.slug);
+    // console.log(this.slug);
 
     await this.article.favorite(this.slug);
     this.favorited = !this.favorited;
     this.favoriteCount = this.favoriteCount + 1;
-    //console.log(this.favorite);
+    // console.log(this.favorite);
     return this.favoriteCount;
 
   }
@@ -58,17 +60,16 @@ export class DetailComponent implements OnInit {
     await this.article.unfavorite(this.slug);
     this.favorited = !this.favorited;
     this.favoriteCount = this.favoriteCount - 1;
-    //console.log(this.favoriteCount);
+    // console.log(this.favoriteCount);
 
   }
-  newCommand: string;
   postcm() {
     console.log('ok', this.newCommand);
   }
-  edit(){
-    this.router.navigateByUrl('newarticle')
-    localStorage.setItem('slug',this.slug)
-    
+  edit() {
+    this.router.navigateByUrl('newarticle');
+    localStorage.setItem('slug', this.slug);
+
   }
 
 

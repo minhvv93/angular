@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import {SettingComponent} from '../profile/setting/setting.component'
+import { SettingComponent } from '../profile/setting/setting.component';
 
 @NgModule({
   declarations: [],
@@ -11,6 +11,6 @@ import {SettingComponent} from '../profile/setting/setting.component'
     RouterModule.forRoot([
     ])
   ],
-  exports : [RouterModule]
+  exports: [RouterModule]
 })
 export class ProfileRoutingModule { }

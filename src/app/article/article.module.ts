@@ -6,14 +6,14 @@ import { DetailComponent } from './detail/detail.component';
 import { NewarticleComponent } from './newarticle/newarticle.component';
 import { MatTabsModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 
 
 
 @NgModule({
-  declarations: [ListComponent, NewarticleComponent,DetailComponent],
+  declarations: [ListComponent, NewarticleComponent, DetailComponent],
   imports: [
     CommonModule,
     ArticleRoutingModule,

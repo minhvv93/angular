@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../share/services/user.service';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-setting',
@@ -14,9 +14,9 @@ export class SettingComponent implements OnInit {
   bio: string;
   email: string;
   image: string;
-  //params:any = {};
+  // params:any = {};
 
-  constructor(private User: UserService , private router : Router) { }
+  constructor(private User: UserService, private router: Router) { }
 
   ngOnInit() {
     this.myprofile();
@@ -30,15 +30,15 @@ export class SettingComponent implements OnInit {
 
   }
   public async update() {
-    let params: any = {
-      "user": {
+    const params: any = {
+      'user': {
         email: this.email,
         bio: this.bio,
         image: this.image,
       }
     };
-    await this.User.updateuser(params)
-    this.router.navigateByUrl('profile')
+    await this.User.updateuser(params);
+    this.router.navigateByUrl('profile');
   }
 
 }
