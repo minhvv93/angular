@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {ApiService} from '../services/api.service'
 import {Article} from '../../article/article'
 
+import { HttpParams } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -55,7 +57,10 @@ export class ArticleService {
   }
   public getarticle(slug){
     let url = "/api/articles/" + slug;
-   return this.apisr.GET(url)
+    let params = new HttpParams();
+    params = params.append('author','jacob');
+    console.log(params.toString());
+   return this.apisr.GET(url,params)
   }
   public newarticle(params){
     this.apisr.POST("/api/articles",params)
@@ -78,5 +83,12 @@ export class ArticleService {
   public updatearticle(slug, params){
     let url = "/api/articles/" + slug
     return this.apisr.PUT(url,params)
+  }
+  public getlitarticle(){
+    let url = "/api/articles/"
+    let params = new HttpParams();
+    params = params.append('author','jacob');
+    console.log(params.toString());
+   return this.apisr.GET(url,params)
   }
 }

@@ -25,7 +25,7 @@ export class NewarticleComponent implements OnInit {
   obj : any;
   public async getarticle(){
     this.obj = await this.article.getarticle(localStorage.getItem('slug'))
-    //localStorage.removeItem('slug');
+    localStorage.removeItem('slug');
     //console.log(this.obj);
     this.title = this.obj.article.title;
     this.description = this.obj.article.description;

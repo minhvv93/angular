@@ -3,6 +3,7 @@ import { ApiService } from '../../services/api.service'
 import { Router } from '@angular/router'
 import { UserService } from '../../services/user.service'
 import { JwtService } from '../../services/jwt.service'
+import { HttpClient, HttpHeaders, HttpResponse, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ import { JwtService } from '../../services/jwt.service'
 export class HeaderComponent implements OnInit {
   data;
 
-  constructor(private router: Router, private jwt: JwtService, private User: UserService) {
+  constructor(private router: Router, private jwt: JwtService, private http: HttpClient , private api : ApiService) {
 
   }
 
@@ -33,7 +34,9 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('')
   }
   newarticle() {
+    localStorage.removeItem('slug')
     this.router.navigate(["/newarticle"]);
+    window.location.reload();
   }
   setting() {
     this.router.navigateByUrl('seting')
@@ -47,7 +50,27 @@ export class HeaderComponent implements OnInit {
   logout() {
     localStorage.removeItem('user');
     localStorage.removeItem('token')
+    this.router.navigateByUrl('')
     window.location.reload();
+  }
+ // httpOptions: object;
+ header;
+  public gethttpoptions() {
+    if (localStorage.getItem('token') == null) {
+      return this.header = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      }
+    } else {
+      return this.header = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        })
+      }
+    }
+  }
+  public async GETParam() {
+      this.api.getparams();
   }
 
 }

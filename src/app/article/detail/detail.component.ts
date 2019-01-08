@@ -28,7 +28,7 @@ export class DetailComponent implements OnInit {
       //console.log(this.slug);
     })
     this.obj = await this.article.getarticle(this.slug);
-    //console.log(this.obj);
+    console.log(this.obj);
     this.title = this.obj.article.title;
     this.description = this.obj.article.description;
     this.author = this.obj.article.author.username;
