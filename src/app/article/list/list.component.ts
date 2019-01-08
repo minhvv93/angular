@@ -28,8 +28,6 @@ export class ListComponent implements OnInit {
   }
   public async articlelist(){
      this.lists = await this.article.getarticlelist();
-      //this.count = this.lists[1].favoritesCount;
-      //console.log(this.count);
       
      console.log(this.lists);
      
@@ -48,27 +46,23 @@ export class ListComponent implements OnInit {
   }
 
   async favoritearticle(item){
-    //await this.article.favorite(item.slug);
     if(!item.favorited){
       console.log(item.slug);
       console.log(item.favorited);
       this.data =  await this.article.favorite(item.slug);
       console.log(this.data);
+      console.log(this.data.article.favoritesCount);
       
-
-      //window.location.reload();
+      item.favoritesCount = this.data.article.favoritesCount;
+      item.favorited = this.data.article.favorited;
+      console.log(item.favoritesCount);
+      
     }else{
       console.log(item.slug);
-      await this.article.unfavorite(item.slug);
-      //window.location.reload();
+      this.data = await this.article.unfavorite(item.slug);
+      item.favoritesCount = this.data.article.favoritesCount;
+      item.favorited = this.data.article.favorited;
     }
-      //window.location.reload();
-      
-      //this.favorited = !this.favorited;
-      //this.favoriteCount = this.favoriteCount + 1;
-      //console.log(this.favorite);
-      //return this.favoriteCount;
-    //console.log(item);
     
   }
 

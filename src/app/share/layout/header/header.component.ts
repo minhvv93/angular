@@ -17,9 +17,12 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  user = this.jwt.getuser();
+  user = localStorage.getItem('user');
 
   ngOnInit() {
+    this.abc();
+  }
+  abc(){
     this.jwt.dataService.subscribe(username=>this.user = username)
   }
 
