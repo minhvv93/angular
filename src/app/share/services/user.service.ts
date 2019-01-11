@@ -22,8 +22,14 @@ export class UserService {
 
   }
   public async register(params) {
-    await this.api.POST('/api/users', params);
-    this.router.navigateByUrl('/singin');
+   this.info =  await this.api.POST('/api/users', params);
+   console.log(this.info);
+   
+    this.jwt.settoken(this.info.user.token);
+    this.jwt.setuser(this.info.user.username);
+    this.jwt.changeData(this.info.user.username);
+    this.router.navigateByUrl('');
+    //this.router.navigateByUrl('/singin');
   }
   public getuser() {
     return this.api.GET('/api/user');

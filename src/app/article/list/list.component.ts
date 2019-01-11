@@ -3,7 +3,7 @@ import { ConfigService } from '../../share/config/config.service';
 import { ApiService } from '../../share/services/api.service';
 import { JwtService } from '../../share/services/jwt.service';
 import { ArticleService } from '../../share/services/article.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute , Router} from '@angular/router';
 
 
 @Component({
@@ -17,9 +17,11 @@ export class ListComponent implements OnInit {
   public count: number;
   public favorited: boolean;
   public data: any;
+  user = localStorage.getItem('user')
+
 
   constructor(private service: ConfigService, private apisr: ApiService, private article: ArticleService,
-    private jwt: JwtService, private route: ActivatedRoute) {
+    private jwt: JwtService, private route: ActivatedRoute, private router : Router) {
   }
 
   ngOnInit() {
@@ -30,6 +32,14 @@ export class ListComponent implements OnInit {
     this.lists = await this.article.getarticlelist();
     console.log(this.lists);
     return this.lists;
+  }
+  public profile(item){
+     localStorage.setItem('author', item.author);
+    // if(item.author == this.user){
+      this.router.navigateByUrl('profile')
+    // }else{
+    //   this.router.navigateByUrl('difprofile');
+    // }
   }
   checklogin() {
     if (this.jwt.gettoken() == null) {

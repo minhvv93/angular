@@ -13,6 +13,12 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpParams } from '@angular/comm
 export class HeaderComponent implements OnInit {
   data;
   header;
+  public GOOGLE_CLIENT_ID = '595859068135-ipi48mfmbbbp4hdcevciqr26kdoh9p5c.apps.googleusercontent.com';
+  public GOOGLE_CLIENT_SECRET = 'MtE1YH6SigejLh-0Hh-E9UPJ';
+  public GOOGLE_REDIRECT_URI = 'http://localhost:4200/singin';
+  public GOOGLE_LINK_GET_TOKEN = 'https://accounts.google.com/o/oauth2/token';
+  public GOOGLE_LINK_GET_USER_INFO = 'https://www.googleapis.com/oauth2/v1/userinfo?access_token=';
+  public GOOGLE_GRANT_TYPE = 'authorization_code';
 
   constructor(private router: Router, private jwt: JwtService, private http: HttpClient, private api: ApiService) {
 
@@ -71,6 +77,10 @@ export class HeaderComponent implements OnInit {
         })
       };
     }
+  }
+  logingoogle() {
+    // logingo0gle
+    alert('ok')
   }
   public async GETParam() {
     this.api.getparams();

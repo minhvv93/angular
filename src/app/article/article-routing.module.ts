@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import {DetailComponent} from './detail/detail.component';
+import {DifprofileComponent} from '../profile/difprofile/difprofile.component';
 
 @NgModule({
   declarations: [],
@@ -12,6 +13,10 @@ import {DetailComponent} from './detail/detail.component';
       {
         path: 'article/:id',
         component: DetailComponent
+      },
+      {
+        path : 'difprofile',
+        component: DifprofileComponent
       }
     ])
   ],
