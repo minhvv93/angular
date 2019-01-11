@@ -2,7 +2,8 @@
   <mat-tab label="Your Feed" *ngIf=check>{{author}}</mat-tab>
   <mat-tab label="Global Feed">
     <a *ngFor="let item of lists" >
-       <button (click)=profile(item);>{{item.author}}</button>
+       <!-- <button (click)=profile(item);>{{item.author}}</button> -->
+       <a [routerLink]="['/profile' , item.author]">{{item.author}}</a>
         <h1 >{{ item.title }}</h1>
         <p>{{ item.description }}</p>
         <span  [routerLink]="['/article' , item.slug]" >Read more...</span>
