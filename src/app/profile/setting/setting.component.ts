@@ -14,6 +14,7 @@ export class SettingComponent implements OnInit {
   bio: string;
   email: string;
   image: string;
+  info ;
   // params:any = {};
 
   constructor(private User: UserService, private router: Router) { }
@@ -37,7 +38,9 @@ export class SettingComponent implements OnInit {
         image: this.image,
       }
     };
-    await this.User.updateuser(params);
+    console.log(params);
+    this.info = await this.User.updateuser(params);
+    console.log(this.info);
     this.router.navigateByUrl('profile');
   }
 
