@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../../share/config/config.service';
-import { ApiService } from '../../share/services/api.service';
+import { ApiService } from 'src/app/share/services/api.service';
 import { JwtService } from '../../share/services/jwt.service';
 import { ArticleService } from '../../share/services/article.service';
 import { ActivatedRoute , Router} from '@angular/router';

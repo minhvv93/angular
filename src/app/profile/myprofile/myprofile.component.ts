@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../share/services/user.service';
-import { ArticleService } from '../../share/services/article.service';
-import { ActivatedRoute, Router } from '@angular/router';
+//import { ArticleService } from '../../share/services/article.service';
+import { ArticleService } from 'src/app/share/services/article.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-myprofile',
   templateUrl: './myprofile.component.html',
@@ -18,11 +18,7 @@ export class MyprofileComponent implements OnInit {
   constructor(private article: ArticleService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    //this.myarticlelist();
-    //this.profile();
-    //localStorage.removeItem('author')
     this.abc();
-    //localStorage.removeItem('author');
   }
 
   public abc(){
