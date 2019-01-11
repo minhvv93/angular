@@ -25,9 +25,9 @@ export class UserService {
    this.info =  await this.api.POST('/api/users', params);
    console.log(this.info);
    
-    this.jwt.settoken(this.info.user.token);
-    this.jwt.setuser(this.info.user.username);
-    this.jwt.changeData(this.info.user.username);
+    await this.jwt.settoken(this.info.user.token);
+    await this.jwt.setuser(this.info.user.username);
+    await this.jwt.changeData(this.info.user.username);
     this.router.navigateByUrl('');
     //this.router.navigateByUrl('/singin');
   }

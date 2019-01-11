@@ -33,7 +33,7 @@ export class SingupComponent implements OnInit {
     try {
       // let response : object = this.User.register(params)
       await this.User.register(params);
-      alert('register successful');
+      //alert('register successful');
 
     } catch (error) {
       console.log('singup error ', error);
