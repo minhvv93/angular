@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { SettingComponent } from '../profile/setting/setting.component';
 import {MyprofileComponent} from '../profile/myprofile/myprofile.component';
 
 @NgModule({
