@@ -12,11 +12,13 @@ import {UserService} from './share/services/user.service';
 import {JwtService} from './share/services/jwt.service';
 import { ArticleModule } from './article/article.module';
 import {ProfileModule} from './profile/profile.module';
+import { TestRxjsComponent } from 'src/app/test-rxjs/test-rxjs.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    TestRxjsComponent,
   ],
   imports: [
     BrowserModule,

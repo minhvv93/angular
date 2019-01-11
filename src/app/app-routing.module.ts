@@ -7,6 +7,8 @@ import {NewarticleComponent} from './article/newarticle/newarticle.component';
 // import {MyprofileComponent} from './profile/myprofile/myprofile.component';
 import {MyprofileComponent} from './profile/myprofile/myprofile.component';
 import {SettingComponent} from './profile/setting/setting.component';
+import { TestRxjsComponent } from 'src/app/test-rxjs/test-rxjs.component';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -27,7 +29,11 @@ import {SettingComponent} from './profile/setting/setting.component';
       {
         path : 'seting',
         component: SettingComponent
-      }
+      },
+      {
+        path : 'test-rxjs',
+        component: TestRxjsComponent
+      },
     ])
   ],
   exports : [RouterModule]
