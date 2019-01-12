@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 //import { ArticleService } from '../../share/services/article.service';
 import { ArticleService } from 'src/app/share/services/article.service';
 import { ActivatedRoute } from '@angular/router';
+import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 @Component({
   selector: 'app-myprofile',
   templateUrl: './myprofile.component.html',
@@ -9,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MyprofileComponent implements OnInit {
   lists: any;
+  favorite: any;
   public check : boolean = true;
   user = localStorage.getItem('user');
   //author = localStorage.getItem('author');
@@ -27,14 +29,15 @@ export class MyprofileComponent implements OnInit {
        console.log(this.author);
     });
     if(this.author == null){
-        this.profile();
+        this.profile(this.user);
+        this.favoritelist(this.user)
     }else{
       this.myarticlelist();
+      this.favoritelist(this.author)
     }
   }
 
   public async myarticlelist() {
-    //console.log(localStorage.getItem('author'));
     if(this.user == this.author){
       this.check = true;
     }else{
@@ -43,8 +46,12 @@ export class MyprofileComponent implements OnInit {
     this.lists = await this.article.getmyarticlelist(this.author);
     return this.lists;
   }
-  public async profile(){
+  public async profile(user){
     this.lists = await this.article.getmyarticlelist(this.user);
     return this.lists;
+  }
+  public async favoritelist(user){
+    this.favorite = await this.article.favoritelist(user);
+    return this.favorite;
   }
 }

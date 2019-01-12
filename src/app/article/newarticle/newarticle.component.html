@@ -9,8 +9,8 @@
     <textarea matInput placeholder="body" rows="10" [(ngModel)]="body"> </textarea>
   </mat-form-field><br>
 
-<button (click)= publish();>Publish Article</button>
-<button (click)= update();>Update Article</button>
+<button (click)= publish(); *ngIf = !check>Publish Article</button>
+<button (click)= update(); *ngIf = check>Update Article</button>
 
 <!-- <section>
     <mat-accordion>

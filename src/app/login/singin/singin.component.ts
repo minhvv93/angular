@@ -32,10 +32,9 @@ export class SinginComponent implements OnInit {
           password: val.password
         }
       }
-      const responce: object = this.apiuser.login(params);
+      let responce = await this.apiuser.login(params);
+      
     } catch (error) {
-      //await timeout(5000);
-      //this.router.navigateByUrl('');
       alert('user sai email or password');
     }
 

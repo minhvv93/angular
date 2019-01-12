@@ -14,6 +14,7 @@ import { ActivatedRoute , Router} from '@angular/router';
 export class ListComponent implements OnInit {
   public check: boolean;
   public lists: any;
+  public yourlists: any;
   public count: number;
   public favorited: boolean;
   public data: any;
@@ -27,19 +28,23 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.checklogin();
     this.articlelist();
+    this.yourarticlelist()
   }
   public async articlelist() {
     this.lists = await this.article.getarticlelist();
     console.log(this.lists);
     return this.lists;
   }
+  public async yourarticlelist() {
+    console.log(this.user);
+    this.yourlists = await this.article.getmyarticlelist(this.user);
+    console.log(this.yourlists);
+    return this.yourlists;
+  }
+
   public profile(item){
      localStorage.setItem('author', item.author);
-    // if(item.author == this.user){
       this.router.navigateByUrl('profile')
-    // }else{
-    //   this.router.navigateByUrl('difprofile');
-    // }
   }
   checklogin() {
     if (this.jwt.gettoken() == null) {
