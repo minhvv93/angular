@@ -22,13 +22,6 @@ export class UserService {
 
   }
   public async register(params) {
-<<<<<<< HEAD
-    this.info = await this.api.POST('/api/users', params);
-    await this.jwt.settoken(this.info.user.token);
-    await  this.jwt.setuser(this.info.user.username);
-    await this.jwt.changeData(this.info.user.username);
-    this.router.navigateByUrl('');
-=======
    this.info =  await this.api.POST('/api/users', params);
    console.log(this.info);
    
@@ -37,7 +30,6 @@ export class UserService {
     await this.jwt.changeData(this.info.user.username);
     this.router.navigateByUrl('');
     //this.router.navigateByUrl('/singin');
->>>>>>> b67738dc3390685899d548b09b349d8d3e29e8e0
   }
   public getuser() {
     return this.api.GET('/api/user');

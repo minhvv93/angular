@@ -31,13 +31,8 @@ export class SingupComponent implements OnInit {
       }
     };
     try {
-<<<<<<< HEAD
-      console.log(params);
-      await this.User.register(params);
-=======
       await this.User.register(params);
 
->>>>>>> b67738dc3390685899d548b09b349d8d3e29e8e0
     } catch (error) {
       alert('singup error , yeu cau dien lai thong tin')
 
