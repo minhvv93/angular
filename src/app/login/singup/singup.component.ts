@@ -22,7 +22,7 @@ export class SingupComponent implements OnInit {
   }
   public async register() {
     const val = this.form.value;
-    // console.log(val.username,val.email,val.password);
+     console.log(val.username,val.email,val.password);
     const params: object = {
       'user': {
         username: val.username,
