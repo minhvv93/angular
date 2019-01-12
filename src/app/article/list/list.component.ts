@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../../share/config/config.service';
-import { ApiService } from '../../share/services/api.service';
+import { ApiService } from 'src/app/share/services/api.service';
 import { JwtService } from '../../share/services/jwt.service';
 import { ArticleService } from '../../share/services/article.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute , Router} from '@angular/router';
 
 
 @Component({
@@ -14,22 +14,37 @@ import { ActivatedRoute } from '@angular/router';
 export class ListComponent implements OnInit {
   public check: boolean;
   public lists: any;
+  public yourlists: any;
   public count: number;
   public favorited: boolean;
   public data: any;
+  user = localStorage.getItem('user')
+
 
   constructor(private service: ConfigService, private apisr: ApiService, private article: ArticleService,
-    private jwt: JwtService, private route: ActivatedRoute) {
+    private jwt: JwtService, private route: ActivatedRoute, private router : Router) {
   }
 
   ngOnInit() {
     this.checklogin();
     this.articlelist();
+    this.yourarticlelist()
   }
   public async articlelist() {
     this.lists = await this.article.getarticlelist();
     console.log(this.lists);
     return this.lists;
+  }
+  public async yourarticlelist() {
+    console.log(this.user);
+    this.yourlists = await this.article.getmyarticlelist(this.user);
+    console.log(this.yourlists);
+    return this.yourlists;
+  }
+
+  public profile(item){
+     localStorage.setItem('author', item.author);
+      this.router.navigateByUrl('profile')
   }
   checklogin() {
     if (this.jwt.gettoken() == null) {

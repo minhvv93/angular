@@ -18,16 +18,16 @@ export class DetailComponent implements OnInit {
   public favoriteCount: number;
   public favorited: boolean;
   public newCommand: string;
+  public user: boolean = true;
+  public check: boolean;
 
   constructor(private article: ArticleService, private route: ActivatedRoute, private jwt: JwtService, private router: Router) { }
   ngOnInit() {
     this.detailarticle();
   }
-
   public async detailarticle() {
     this.route.params.subscribe((params) => {
       this.slug = params['id'];
-      // console.log(this.slug);
     });
     this.obj = await this.article.getarticle(this.slug);
     console.log(this.obj);
@@ -36,6 +36,15 @@ export class DetailComponent implements OnInit {
     this.author = this.obj.article.author.username;
     this.favoriteCount = this.obj.article.favoritesCount;
     this.favorited = this.obj.article.favorited;
+    console.log(this.author);
+    console.log(localStorage.getItem('user'));
+    if(this.author == localStorage.getItem('user')){
+      this.user = false;
+      this.check = true
+    }else{
+      this.user = true;
+      this.check = false
+    }
   }
   public async delete() {
     if (this.author === this.jwt.getuser()) {

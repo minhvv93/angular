@@ -54,6 +54,28 @@ export class ArticleService {
     }
     return listarticle;
   }
+  public async favoritelist(author) {
+    const url = '/api/articles?favorited=' + author;
+    console.log(url);
+    this.obj = await this.apisr.GET(url);
+    const listarticle: any = [];
+
+    for (let i = 0; i < this.obj.articlesCount; i++) {
+
+      const article = new Article();
+      article.slug = this.obj.articles[i].slug;
+      article.body = this.obj.articles[i].body;
+      article.createdAt = this.obj.articles[i].createdAt;
+      article.description = this.obj.articles[i].description;
+      article.favorited = this.obj.articles[i].favorited;
+      article.favoritesCount = this.obj.articles[i].favoritesCount;
+      article.title = this.obj.articles[i].title;
+      article.updatedAt = this.obj.articles[i].updatedAt;
+      article.author = this.obj.articles[i].author.username;
+      listarticle.push(article);
+    }
+    return listarticle;
+  }
   public getarticle(slug) {
     const url = '/api/articles/' + slug;
     let params = new HttpParams();

@@ -24,18 +24,17 @@ export class SinginComponent implements OnInit {
     });
   }
   public async singin() {
-    const val = this.form.value;
-    const params: object = {
-      'user': {
-        email: val.email,
-        password: val.password
-      }
-    };
     try {
-      const responce: object = this.apiuser.login(params);
+      const val = this.form.value;
+      const params: object = {
+        'user': {
+          email: val.email,
+          password: val.password
+        }
+      }
+      let responce = await this.apiuser.login(params);
+      
     } catch (error) {
-      await timeout(5000);
-      this.router.navigateByUrl('');
       alert('user sai email or password');
     }
 

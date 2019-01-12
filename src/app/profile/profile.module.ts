@@ -7,10 +7,11 @@ import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { SettingComponent } from './setting/setting.component';
 import { MatTabsModule } from '@angular/material';
+import { DifprofileComponent } from './difprofile/difprofile.component';
 
 
 @NgModule({
-  declarations: [MyprofileComponent, SettingComponent],
+  declarations: [MyprofileComponent, SettingComponent, DifprofileComponent],
   imports: [
     CommonModule,
     ProfileRoutingModule,
