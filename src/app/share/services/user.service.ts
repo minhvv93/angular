@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { JwtService } from '../../share/services/jwt.service';
 import { Router } from '@angular/router';
-import { Observable, BehaviorSubject, ReplaySubject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +36,20 @@ export class UserService {
   }
   public async updateuser(params) {
     return this.api.PUT('/api/user', params);
+  }
+  public async followuser(username){
+    const url = '/api/profiles/' + username + '/follow';
+    console.log(url);
+    return this.api.POST(url);
+    //return this.apisr.DELETE(url);
+  }
+  public async unfollowuser(username){
+    const url = '/api/profiles/' + username + '/follow';
+    console.log(url);
+    return this.api.DELETE(url);
+  }
+  public async profileuser(username){
+    const url = '/api/profiles/' + username;
+    return this.api.GET(url);
   }
 }

@@ -80,6 +80,9 @@ export class DetailComponent implements OnInit {
     localStorage.setItem('slug', this.slug);
 
   }
+  editprofile(){
+    this.router.navigateByUrl('seting');
+  }
 
 
 }

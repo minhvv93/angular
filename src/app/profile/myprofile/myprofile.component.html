@@ -12,7 +12,8 @@
 </mat-tab-group> -->
 <h2 *ngIf = check>{{user}}</h2>
 <h2 *ngIf = !check>{{author}}</h2>
-<button *ngIf = check [routerLink]="['/seting']">Edit Profile setting</button><button *ngIf = !check >Follow</button>
+<button *ngIf = check [routerLink]="['/seting']">Edit Profile setting</button>
+<button *ngIf = "!check && !following" (click) = follow();>Follow</button> <button *ngIf = "!check && following"  (click) = unfollow();>UnFollow</button>
 <mat-tab-group>
     <mat-tab label="My Article">
         <a *ngFor="let list of lists" [routerLink]="['/article' , list.slug]">

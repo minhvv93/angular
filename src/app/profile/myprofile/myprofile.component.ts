@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 //import { ArticleService } from '../../share/services/article.service';
 import { ArticleService } from 'src/app/share/services/article.service';
 import { ActivatedRoute } from '@angular/router';
-import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
+import { UserService} from 'src/app/share/services/user.service'
 @Component({
   selector: 'app-myprofile',
   templateUrl: './myprofile.component.html',
@@ -13,14 +13,18 @@ export class MyprofileComponent implements OnInit {
   favorite: any;
   public check : boolean = true;
   user = localStorage.getItem('user');
-  //author = localStorage.getItem('author');
-  // params:any = {};
+  following: any;
+  data: any;
   author: string;
+  profileuser: any;
 
-  constructor(private article: ArticleService, private route: ActivatedRoute) { }
+  constructor(private article: ArticleService, private route: ActivatedRoute, private usersr : UserService) { }
 
   ngOnInit() {
     this.abc();
+    //console.log(this.following);
+    this.getfollow();
+    //this.follow();
   }
 
   public abc(){
@@ -53,5 +57,25 @@ export class MyprofileComponent implements OnInit {
   public async favoritelist(user){
     this.favorite = await this.article.favoritelist(user);
     return this.favorite;
+  }
+  public async getfollow(){
+    this.profileuser = await this.usersr.profileuser(this.author);
+    this.following = this.profileuser.profile.following;
+   // console.log(this.profileuser);
+    return this.following;
+  }
+  public async follow(){
+    console.log(this.author);
+    this.data = await this.usersr.followuser(this.author);
+    console.log(this.data);
+    return this.following = this.data.profile.following;
+    console.log(this.following);
+    console.log(this.data);
+    
+  }
+  public async unfollow(){
+    this.data = await this.usersr.unfollowuser(this.author);
+    console.log(this.data);
+    return this.following = this.data.profile.following;
   }
 }
